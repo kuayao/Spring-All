@@ -2,3 +2,12 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffi: .html
+    mybatis:
+        mapper-locations: classpath:/mapper/**.xml
+    spring:
+        datasource:
+            driver-class-name: com.mysql.jdbc.Driver
+            password: 123456
+            url: jdbc:mysql://127.0.0.1:3306/first?useUnicode=true&characterEncoding=utf-8
+            username: root
+
