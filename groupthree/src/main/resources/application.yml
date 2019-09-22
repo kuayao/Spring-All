@@ -2,6 +2,7 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffi: .html
+    cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: 123456
@@ -21,5 +22,10 @@ spring:
     timeBetweenEvictionRunsMillis: 60000
     type: com.alibaba.druid.pool.DruidDataSource
     validationQuery: SELECT 1 FROM DUAL
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true #重启目录
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
+

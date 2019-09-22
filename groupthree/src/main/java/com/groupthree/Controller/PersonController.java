@@ -22,7 +22,6 @@ public class PersonController {
    @RequestMapping("/getAllPerson")
     public  String getAllPerson(Model model){
        List<Person> people = personService.getAllPerson();
-
        model.addAttribute("people",people);
        return ("list");
 
