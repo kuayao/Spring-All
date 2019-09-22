@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.groupthree.Controller")
+@ComponentScan({"com.groupthree.Controller","com.groupthree.service"})
 @MapperScan("com.groupthree.dao")
 public class GroupthreeApplication {
 

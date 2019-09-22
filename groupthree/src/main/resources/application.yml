@@ -2,12 +2,24 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffi: .html
-    mybatis:
-        mapper-locations: classpath:/mapper/**.xml
-    spring:
-        datasource:
-            driver-class-name: com.mysql.jdbc.Driver
-            password: 123456
-            url: jdbc:mysql://127.0.0.1:3306/first?useUnicode=true&characterEncoding=utf-8
-            username: root
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC
+    username: root
+    initialSize: 5
+    maxActive: 20
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 5
+    name: mysql_test
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    type: com.alibaba.druid.pool.DruidDataSource
+    validationQuery: SELECT 1 FROM DUAL
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
