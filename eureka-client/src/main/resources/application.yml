@@ -8,3 +8,19 @@ eureka:
     service-url:
       defaultZone:
         http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        # include: "*" 开启所有端点
+        include:
+          - health
+          - info
+          - env
+          - beans
+          - shutdown #POST
+  endpoint:
+    health:
+      show-details: always #显示完整的应用健康数据
+    shutdown:
+      enabled: true
