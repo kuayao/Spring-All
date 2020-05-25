@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: member-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8761/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 500 #\u5BA2\u6237\u7AEF\u5411\u5FAE\u670D\u52A1\u53D1\u8D77\u94FE\u63A5\u7684\u6700\u957F\u7B49\u5F85\u65F6\u95F4
+        readTimeout: 500 #\u8FDE\u63A5\u540E\uFF0C\u7B49\u5F85\u54CD\u5E94\u8FD4\u56DE\u7684\u6700\u957F\u65F6\u95F4
+hystrix:
+  command:
+    #"\u7C7B\u540D#\u65B9\u6CD5\u540D\u5B57(\u53C2\u6570\u7C7B\u578B1,\u53C2\u6570\u7C7B\u578B2,\u53C2\u6570\u7C7B\u578Bn)"
+    "MessageService#sendSMS(String,String)":
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+      circuitBreaker:
+        forceOpen: false #\u5F3A\u5236\u6253\u5F00\u7194\u65AD\u5668\u5904\u4E8EOPEN\u72B6\u6001\uFF0C\u5373\u670D\u52A1\u4E0D\u53EF\u7528
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+      circuitBreaker:
+        requestVolumeThreshold: 50
+        errorThresholdPercentage: 60
+        sellpWindowInMilliseconds: 10000
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 20000
